@@ -1,0 +1,21 @@
+version: '2'
+volumes:
+  postgres11-postgis3.0:
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: "postgres11-postgis3.0"
+    container_name: "postgres11-postgis3.0"
+    volumes:
+      - postgres11-postgis3.0:/var/lib/postgresql/data
+    networks:
+      - postgres_conn
+    ports:
+      - '54320:5432'
+    env_file: .env
+
+networks:
+  postgres_conn:
+    driver: bridge
